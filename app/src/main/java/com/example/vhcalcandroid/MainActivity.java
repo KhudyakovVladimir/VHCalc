@@ -294,9 +294,17 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             @Override
             public void onClick(View v) {
                 buttonMinus.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
+
+                if(operation == '-'){
+                    number2 = result;
+                }
+                else {
+                    number2 = number1;
+                }
+
                 stringBuilder.delete(0,stringBuilder.length());
                 //textView.setText("-");
-                number2 = number1;
+                //number2 = number1;
                 operation = '-';
                 textViewOperation.setText("-");
                 Log.d(LOG_TAG, "button - -----------");
@@ -313,9 +321,17 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             @Override
             public void onClick(View v) {
                 multiply.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
+
+                if(operation == '*'){
+                    number2 = result;
+                }
+                else {
+                    number2 = number1;
+                }
+
                 stringBuilder.delete(0,stringBuilder.length());
                 //textView.setText("*");
-                number2 = number1;
+                //number2 = number1;
                 operation = '*';
                 textViewOperation.setText("*");
                 Log.d(LOG_TAG, "button * -----------");
@@ -332,9 +348,17 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             @Override
             public void onClick(View v) {
                 buttonDivide.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
+
+                if(operation == '/'){
+                    number2 = result;
+                }
+                else {
+                    number2 = number1;
+                }
+
                 stringBuilder.delete(0,stringBuilder.length());
                 //textView.setText("/");
-                number2 = number1;
+                //number2 = number1;
                 operation = '/';
                 textViewOperation.setText("/");
                 Log.d(LOG_TAG, "button / -----------");
