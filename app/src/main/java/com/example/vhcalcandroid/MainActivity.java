@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
                 if(operation == '/'){
                     textView.setText("error");
                 }
-                workInside("0");
+                workInsideNumbers("0");
             }
         });
 
@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             @Override
             public void onClick(View v) {
                 button1.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
-                workInside("1");
+                workInsideNumbers("1");
             }
         });
 
@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             @Override
             public void onClick(View v) {
                 button2.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
-                workInside("2");
+                workInsideNumbers("2");
             }
         });
 
@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             @Override
             public void onClick(View v) {
                 button3.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
-                workInside("3");
+                workInsideNumbers("3");
             }
         });
 
@@ -163,7 +163,7 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             @Override
             public void onClick(View v) {
                 button4.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
-                workInside("4");
+                workInsideNumbers("4");
             }
         });
 
@@ -171,7 +171,7 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             @Override
             public void onClick(View v) {
                 button5.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
-                workInside("5");
+                workInsideNumbers("5");
             }
         });
 
@@ -179,7 +179,7 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             @Override
             public void onClick(View v) {
                 button6.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
-                workInside("6");
+                workInsideNumbers("6");
             }
         });
 
@@ -187,7 +187,7 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             @Override
             public void onClick(View v) {
                 button7.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
-                workInside("7");
+                workInsideNumbers("7");
             }
         });
 
@@ -195,7 +195,7 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             @Override
             public void onClick(View v) {
                 button8.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
-                workInside("8");
+                workInsideNumbers("8");
             }
         });
 
@@ -203,7 +203,7 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             @Override
             public void onClick(View v) {
                 button9.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
-                workInside("9");
+                workInsideNumbers("9");
             }
         });
 
@@ -331,42 +331,9 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             @Override
             public void onClick(View v) {
                 buttonResult.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
-                BigDecimal bigDecimal1 = new BigDecimal(String.valueOf(number1));
-                BigDecimal bigDecimal2 = new BigDecimal(String.valueOf(number2));
-
-                switch (operation){
-                    case '0': {return;}
-                    case '+' : result = Double.parseDouble(bigDecimal2.add(bigDecimal1).toString());break;
-                    case '-': result = Double.parseDouble(String.valueOf(bigDecimal2.subtract(bigDecimal1)));break;
-                    case '*': result = Double.parseDouble(bigDecimal2.multiply(bigDecimal1).toString());break;
-                    case '/':
-                        try {
-                            result = Double.parseDouble(bigDecimal2.divide(bigDecimal1,7, RoundingMode.HALF_UP).toString());break;
-                        }catch (ArithmeticException aE){
-                            textView.setText("error");
-                            stringBuilder.delete(0,stringBuilder.length());
-                            return;
-                        }
-                }
-
+                removeZeroAfterDot();
                 log("=");
-
-                //if result include zero after dot,this fix it
-
-                String tempText = String.valueOf(result);
-                String resultText = "";
-                if((tempText.charAt(tempText.length()-1) == '0')){
-                    resultText = tempText.substring(0,tempText.length() - 2);
-                    textView.setText(resultText);
-                    textViewOperation.setText("");
-                }
-                else {
-                    textView.setText(tempText);
-                }
                 operation = '0';
-                number1 = 0;
-                number1 = result;
-                result = 0;
                 flagRepeatOperation = false;
                 soundPool.play(keyboardResult,1,1,0,0,1);
             }
@@ -398,7 +365,7 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
         return result;
     }
 
-    void workInside(String s){
+    void workInsideNumbers(String s){
         stringBuilder.append(s);
         textView.setText(stringBuilder.toString());
         number1 = Double.parseDouble(stringBuilder.toString());
@@ -432,6 +399,20 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
         operation = s;
         textViewOperation.setText(String.valueOf(s));
         soundPool.play(keyboardOperation,1,1,0,0,1);
+    }
+
+    void removeZeroAfterDot(){
+        //if result include zero after dot,this fix it
+        String tempText = String.valueOf(result);
+        String resultText = "";
+        if((tempText.charAt(tempText.length()-1) == '0')){
+            resultText = tempText.substring(0,tempText.length() - 2);
+            textView.setText(resultText);
+            textViewOperation.setText("");
+        }
+        else {
+            textView.setText(tempText);
+        }
     }
 
     @Override
