@@ -17,7 +17,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadCompleteListener {
-    // operation '=' need fixed
+    // start style_and_sound branch
 
     final String LOG_TAG = "myLogs";
 
