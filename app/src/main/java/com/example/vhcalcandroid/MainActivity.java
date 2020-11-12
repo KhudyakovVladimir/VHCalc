@@ -17,8 +17,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadCompleteListener {
-    //start the new multiply_addition branch
-    //работает мультиоперация начиная со второго действия
+    // operation '=' need fixed
 
     final String LOG_TAG = "myLogs";
 
@@ -132,7 +131,6 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
                 if(operation == '/'){
                     textView.setText("error");
                 }
-                stringBuilder.append("0");
                 workInside("0");
             }
         });
@@ -141,7 +139,6 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             @Override
             public void onClick(View v) {
                 button1.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
-                stringBuilder.append("1");
                 workInside("1");
             }
         });
@@ -150,7 +147,6 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             @Override
             public void onClick(View v) {
                 button2.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
-                stringBuilder.append("2");
                 workInside("2");
             }
         });
@@ -159,7 +155,6 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             @Override
             public void onClick(View v) {
                 button3.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
-                stringBuilder.append("3");
                 workInside("3");
             }
         });
@@ -168,7 +163,6 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             @Override
             public void onClick(View v) {
                 button4.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
-                stringBuilder.append("4");
                 workInside("4");
             }
         });
@@ -177,7 +171,6 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             @Override
             public void onClick(View v) {
                 button5.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
-                stringBuilder.append("5");
                 workInside("5");
             }
         });
@@ -186,7 +179,6 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             @Override
             public void onClick(View v) {
                 button6.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
-                stringBuilder.append("6");
                 workInside("6");
             }
         });
@@ -195,7 +187,6 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             @Override
             public void onClick(View v) {
                 button7.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
-                stringBuilder.append("7");
                 workInside("7");
             }
         });
@@ -204,7 +195,6 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             @Override
             public void onClick(View v) {
                 button8.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
-                stringBuilder.append("8");
                 workInside("8");
             }
         });
@@ -213,7 +203,6 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             @Override
             public void onClick(View v) {
                 button9.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
-                stringBuilder.append("9");
                 workInside("9");
             }
         });
@@ -271,21 +260,7 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             @Override
             public void onClick(View v) {
                 buttonPlus.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
-
-                flagRepeatOperation = true;
-
-                if(flagRepeatOperation){
-                    number2 = result;
-                }
-                else {
-                    flagRepeatOperation = false;
-                    number2 = number1;
-                }
-
-                stringBuilder.delete(0,stringBuilder.length());
-                operation = '+';
-                textViewOperation.setText("+");
-                soundPool.play(keyboardOperation,1,1,0,0,1);
+                workInsideOperation('+');
                 log("+");
             }
         });
@@ -294,21 +269,7 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             @Override
             public void onClick(View v) {
                 buttonMinus.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
-
-                flagRepeatOperation = true;
-
-                if(flagRepeatOperation){
-                    number2 = result;
-                }
-                else {
-                    flagRepeatOperation = false;
-                    number2 = number1;
-                }
-
-                stringBuilder.delete(0,stringBuilder.length());
-                operation = '-';
-                textViewOperation.setText("-");
-                soundPool.play(keyboardOperation,1,1,0,0,1);
+                workInsideOperation('-');
                 log("-");
             }
         });
@@ -317,21 +278,7 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             @Override
             public void onClick(View v) {
                 multiply.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
-
-                flagRepeatOperation = true;
-
-                if(flagRepeatOperation){
-                    number2 = result;
-                }
-                else {
-                    flagRepeatOperation = false;
-                    number2 = number1;
-                }
-
-                stringBuilder.delete(0,stringBuilder.length());
-                operation = '*';
-                textViewOperation.setText("*");
-                soundPool.play(keyboardOperation,1,1,0,0,1);
+                workInsideOperation('*');
                 log("*");
             }
         });
@@ -340,21 +287,7 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             @Override
             public void onClick(View v) {
                 buttonDivide.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
-
-                flagRepeatOperation = true;
-
-                if(flagRepeatOperation){
-                    number2 = result;
-                }
-                else {
-                    flagRepeatOperation = false;
-                    number2 = number1;
-                }
-
-                stringBuilder.delete(0,stringBuilder.length());
-                operation = '/';
-                textViewOperation.setText("/");
-                soundPool.play(keyboardOperation,1,1,0,0,1);
+                workInsideOperation('/');
                 log("/");
             }
         });
@@ -447,7 +380,7 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
         BigDecimal bigDecimal1 = new BigDecimal(String.valueOf(number1));
         BigDecimal bigDecimal2 = new BigDecimal(String.valueOf(number2));
         switch (operation){
-            case '0': {break;}
+            case '0': {result = Double.parseDouble(bigDecimal1.toString());break;}
             case '+' : result = Double.parseDouble(bigDecimal2.add(bigDecimal1).toString());break;
             case '-': result = Double.parseDouble(String.valueOf(bigDecimal2.subtract(bigDecimal1)));break;
             case '*': result = Double.parseDouble(bigDecimal2.multiply(bigDecimal1).toString());break;
@@ -466,6 +399,7 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
     }
 
     void workInside(String s){
+        stringBuilder.append(s);
         textView.setText(stringBuilder.toString());
         number1 = Double.parseDouble(stringBuilder.toString());
         result = getResult(operation);
@@ -481,6 +415,23 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
         Log.d(LOG_TAG, "result = " + result);
         Log.d(LOG_TAG, "operation = " + operation);
         Log.d(LOG_TAG, "flagRepeatOperation = " + flagRepeatOperation);
+    }
+
+    void workInsideOperation(char s){
+        flagRepeatOperation = true;
+
+        if(flagRepeatOperation){
+            number2 = result;
+        }
+        else {
+            flagRepeatOperation = false;
+            number2 = number1;
+        }
+
+        stringBuilder.delete(0,stringBuilder.length());
+        operation = s;
+        textViewOperation.setText(String.valueOf(s));
+        soundPool.play(keyboardOperation,1,1,0,0,1);
     }
 
     @Override
