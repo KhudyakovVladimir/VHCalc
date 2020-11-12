@@ -52,6 +52,8 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
 
     static char operation = '0';
 
+    boolean flagRepeatOperation = false;
+
     SoundPool soundPool;
     int keyboardTap;
     int keyboardOperation;
@@ -127,14 +129,7 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
                     textView.setText("error");
                 }
                 stringBuilder.append("0");
-                textView.setText(stringBuilder.toString());
-                number1 = Double.parseDouble(stringBuilder.toString());
-                Log.d(LOG_TAG, "button 0 -----------");
-                Log.d(LOG_TAG, "stringBuilder = " + stringBuilder.toString());
-                Log.d(LOG_TAG, "number_1 = " + number1);
-                Log.d(LOG_TAG, "number_2 = " + number2);
-                Log.d(LOG_TAG, "result = " + result);
-                soundPool.play(keyboardTap,1,1,0,0,1);
+                workInside("0");
             }
         });
 
@@ -143,14 +138,7 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             public void onClick(View v) {
                 button1.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
                 stringBuilder.append("1");
-                textView.setText(stringBuilder.toString());
-                number1 = Double.parseDouble(stringBuilder.toString());
-                Log.d(LOG_TAG, "button 1 -----------");
-                Log.d(LOG_TAG, "stringBuilder = " + stringBuilder.toString());
-                Log.d(LOG_TAG, "number_1 = " + number1);
-                Log.d(LOG_TAG, "number_2 = " + number2);
-                Log.d(LOG_TAG, "result = " + result);
-                soundPool.play(keyboardTap,1,1,0,0,1);
+                workInside("1");
             }
         });
 
@@ -159,14 +147,7 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             public void onClick(View v) {
                 button2.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
                 stringBuilder.append("2");
-                textView.setText(stringBuilder.toString());
-                number1 = Double.parseDouble(stringBuilder.toString());
-                Log.d(LOG_TAG, "button 2 -----------");
-                Log.d(LOG_TAG, "stringBuilder = " + stringBuilder.toString());
-                Log.d(LOG_TAG, "number_1 = " + number1);
-                Log.d(LOG_TAG, "number_2 = " + number2);
-                Log.d(LOG_TAG, "result = " + result);
-                soundPool.play(keyboardTap,1,1,0,0,1);
+                workInside("2");
             }
         });
 
@@ -175,14 +156,7 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             public void onClick(View v) {
                 button3.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
                 stringBuilder.append("3");
-                textView.setText(stringBuilder.toString());
-                number1 = Double.parseDouble(stringBuilder.toString());
-                Log.d(LOG_TAG, "button 3 -----------");
-                Log.d(LOG_TAG, "stringBuilder = " + stringBuilder.toString());
-                Log.d(LOG_TAG, "number_1 = " + number1);
-                Log.d(LOG_TAG, "number_2 = " + number2);
-                Log.d(LOG_TAG, "result = " + result);
-                soundPool.play(keyboardTap,1,1,0,0,1);
+                workInside("3");
             }
         });
 
@@ -191,14 +165,7 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             public void onClick(View v) {
                 button4.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
                 stringBuilder.append("4");
-                textView.setText(stringBuilder.toString());
-                number1 = Double.parseDouble(stringBuilder.toString());
-                Log.d(LOG_TAG, "button 4 -----------");
-                Log.d(LOG_TAG, "stringBuilder = " + stringBuilder.toString());
-                Log.d(LOG_TAG, "number_1 = " + number1);
-                Log.d(LOG_TAG, "number_2 = " + number2);
-                Log.d(LOG_TAG, "result = " + result);
-                soundPool.play(keyboardTap,1,1,0,0,1);
+                workInside("4");
             }
         });
 
@@ -207,14 +174,7 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             public void onClick(View v) {
                 button5.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
                 stringBuilder.append("5");
-                textView.setText(stringBuilder.toString());
-                number1 = Double.parseDouble(stringBuilder.toString());
-                Log.d(LOG_TAG, "button 5 -----------");
-                Log.d(LOG_TAG, "stringBuilder = " + stringBuilder.toString());
-                Log.d(LOG_TAG, "number_1 = " + number1);
-                Log.d(LOG_TAG, "number_2 = " + number2);
-                Log.d(LOG_TAG, "result = " + result);
-                soundPool.play(keyboardTap,1,1,0,0,1);
+                workInside("5");
             }
         });
 
@@ -223,14 +183,7 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             public void onClick(View v) {
                 button6.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
                 stringBuilder.append("6");
-                textView.setText(stringBuilder.toString());
-                number1 = Double.parseDouble(stringBuilder.toString());
-                Log.d(LOG_TAG, "button 6 -----------");
-                Log.d(LOG_TAG, "stringBuilder = " + stringBuilder.toString());
-                Log.d(LOG_TAG, "number_1 = " + number1);
-                Log.d(LOG_TAG, "number_2 = " + number2);
-                Log.d(LOG_TAG, "result = " + result);
-                soundPool.play(keyboardTap,1,1,0,0,1);
+                workInside("6");
             }
         });
 
@@ -239,14 +192,7 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             public void onClick(View v) {
                 button7.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
                 stringBuilder.append("7");
-                textView.setText(stringBuilder.toString());
-                number1 = Double.parseDouble(stringBuilder.toString());
-                Log.d(LOG_TAG, "button 7 -----------");
-                Log.d(LOG_TAG, "stringBuilder = " + stringBuilder.toString());
-                Log.d(LOG_TAG, "number_1 = " + number1);
-                Log.d(LOG_TAG, "number_2 = " + number2);
-                Log.d(LOG_TAG, "result = " + result);
-                soundPool.play(keyboardTap,1,1,0,0,1);
+                workInside("7");
             }
         });
 
@@ -255,14 +201,7 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             public void onClick(View v) {
                 button8.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
                 stringBuilder.append("8");
-                textView.setText(stringBuilder.toString());
-                number1 = Double.parseDouble(stringBuilder.toString());
-                Log.d(LOG_TAG, "button 8 -----------");
-                Log.d(LOG_TAG, "stringBuilder = " + stringBuilder.toString());
-                Log.d(LOG_TAG, "number_1 = " + number1);
-                Log.d(LOG_TAG, "number_2 = " + number2);
-                Log.d(LOG_TAG, "result = " + result);
-                soundPool.play(keyboardTap,1,1,0,0,1);
+                workInside("8");
             }
         });
 
@@ -271,14 +210,7 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             public void onClick(View v) {
                 button9.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
                 stringBuilder.append("9");
-                textView.setText(stringBuilder.toString());
-                number1 = Double.parseDouble(stringBuilder.toString());
-                Log.d(LOG_TAG, "button 9 -----------");
-                Log.d(LOG_TAG, "stringBuilder = " + stringBuilder.toString());
-                Log.d(LOG_TAG, "number_1 = " + number1);
-                Log.d(LOG_TAG, "number_2 = " + number2);
-                Log.d(LOG_TAG, "result = " + result);
-                soundPool.play(keyboardTap,1,1,0,0,1);
+                workInside("9");
             }
         });
 
@@ -336,11 +268,18 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             public void onClick(View v) {
                 buttonPlus.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
 
-                number2 = number1;
+                if(operation == '+'){
+                    number2 = result;
+                }
+                else {
+                    number2 = number1;
+                }
+
                 stringBuilder.delete(0,stringBuilder.length());
                 //textView.setText("+");
                 operation = '+';
                 textViewOperation.setText("+");
+                //result = getResult(operation);
                 Log.d(LOG_TAG, "button + -----------");
                 Log.d(LOG_TAG, "stringBuilder = " + stringBuilder.toString());
                 Log.d(LOG_TAG, "number_1 = " + number1);
@@ -471,7 +410,9 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
                 Log.d(LOG_TAG, "number_2 = " + number2);
                 Log.d(LOG_TAG, "operation = " + operation);
                 Log.d(LOG_TAG, "result = " + result);
+
                 //if result include zero after dot,this fix it
+
                 String tempText = String.valueOf(result);
                 String resultText = "";
                 if((tempText.charAt(tempText.length()-1) == '0')){
@@ -491,13 +432,49 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
         });
     }
 
+    double getResult(char operation){
+        //Log.d(LOG_TAG, "getResult ----------------");
+        //Log.d(LOG_TAG, "operation = " + operation);
+        double result = 0;
+        BigDecimal bigDecimal1 = new BigDecimal(String.valueOf(number1));
+        BigDecimal bigDecimal2 = new BigDecimal(String.valueOf(number2));
+        switch (operation){
+            case '0': {break;}
+            case '+' : result = Double.parseDouble(bigDecimal2.add(bigDecimal1).toString());break;
+            case '-': result = Double.parseDouble(String.valueOf(bigDecimal2.subtract(bigDecimal1)));break;
+            case '*': result = Double.parseDouble(bigDecimal2.multiply(bigDecimal1).toString());break;
+            case '/':
+                try {
+                    result = Double.parseDouble(bigDecimal2.divide(bigDecimal1,7, RoundingMode.HALF_UP).toString());break;
+                }catch (ArithmeticException aE){
+                    textView.setText("error");
+                    stringBuilder.delete(0,stringBuilder.length());
+                    break;
+                }
+        }
+        //Log.d(LOG_TAG, "result = " + result);
+        //Log.d(LOG_TAG, "operation = " + operation);
+        return result;
+    }
+
+    void workInside(String s){
+        textView.setText(stringBuilder.toString());
+        number1 = Double.parseDouble(stringBuilder.toString());
+        result = getResult(operation);
+        Log.d(LOG_TAG, "button " + s + " -----------");
+        Log.d(LOG_TAG, "stringBuilder = " + stringBuilder.toString());
+        Log.d(LOG_TAG, "number_1 = " + number1);
+        Log.d(LOG_TAG, "number_2 = " + number2);
+        Log.d(LOG_TAG, "result = " + result);
+        Log.d(LOG_TAG, "operation = " + operation);
+        soundPool.play(keyboardTap,1,1,0,0,1);
+    }
+
     @Override
     public void onBackPressed() {
-
     }
 
     @Override
     public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
-
     }
 }
