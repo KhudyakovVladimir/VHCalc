@@ -1,7 +1,6 @@
 package com.example.vhcalcandroid;
 
 
-import android.content.Intent;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.util.Log;
@@ -11,6 +10,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import java.math.BigDecimal;
@@ -20,6 +21,8 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
     // start style_and_sound branch
 
     final String LOG_TAG = "myLogs";
+
+    static int codeForMenu = 0;
 
     TextView textView;
     TextView textViewOperation;
@@ -54,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
     static char operation = '0';
 
     boolean flagRepeatOperation = false;
+    boolean flagSound = true;
 
     SoundPool soundPool;
     int keyboardTap;
@@ -79,9 +83,45 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuItem menuItem = menu.add("about");
-        menuItem.setIntent(new Intent(this, About.class));
-        return super.onCreateOptionsMenu(menu);
+        switch (codeForMenu){
+            case 0 : {
+                getMenuInflater().inflate(R.menu.sound_off, menu);
+                break;
+            }
+            case 1 : {
+                getMenuInflater().inflate(R.menu.sound_on, menu);
+                break;
+            }
+        }
+
+        //MenuItem menuItemAbout = menu.add("about");
+        //MenuItem menuItemSound = menu.add("sound");
+        //menuItemAbout.setIntent(new Intent(this, About.class));
+        //return super.onCreateOptionsMenu(menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.sound_on : {
+                codeForMenu = 1;
+                flagSound = false;
+                invalidateOptionsMenu();
+                break;
+            }
+            case R.id.sound_off : {
+                codeForMenu = 0;
+                flagSound = true;
+                invalidateOptionsMenu();
+                break;
+            }
+            case R.id.about : {
+                Toast.makeText(this, "Written by Khudyakov Vladimir @2020", Toast.LENGTH_LONG).show();
+                break;
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -128,6 +168,7 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             @Override
             public void onClick(View v) {
                 button0.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
+
                 if(operation == '/'){
                     textView.setText("error");
                 }
@@ -211,11 +252,15 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             @Override
             public void onClick(View v) {
                 buttonDot.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
-                soundPool.play(keyboardTap,1,1,0,0,1);
+                if(flagSound){
+                    soundPool.play(keyboardTap,1,1,0,0,1);
+                }
                 if(stringBuilder.length() == 0){
                     stringBuilder.append("0.");
                     textView.setText(stringBuilder.toString());
-                    soundPool.play(keyboardTap,1,1,0,0,1);
+                    if(flagSound){
+                        soundPool.play(keyboardTap,1,1,0,0,1);
+                    }
                 }
                 if(stringBuilder.toString().contains(".")){
                 }
@@ -241,7 +286,10 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
                 else {
                     number1 = Double.parseDouble(stringBuilder.toString());
                     textView.setText(stringBuilder.toString());
-                }soundPool.play(keyboardOperation,1,1,0,0,1);
+                }
+                if(flagSound){
+                    soundPool.play(keyboardOperation,1,1,0,0,1);
+                }
             }
         });
 
@@ -252,7 +300,9 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
                 stringBuilder.delete(0,stringBuilder.capacity());
                 textView.setText("0");
                 textViewOperation.setText("");
-                soundPool.play(keyboardOperation,1,1,0,0,1);
+                if(flagSound){
+                    soundPool.play(keyboardOperation,1,1,0,0,1);
+                }
             }
         });
 
@@ -299,7 +349,9 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
                 String s = (String) textView.getText();
                 memory = Double.parseDouble(s);
                 textViewMemory.setText("M");
-                soundPool.play(keyboardOperation,1,1,0,0,1);
+                if(flagSound){
+                    soundPool.play(keyboardOperation,1,1,0,0,1);
+                }
             }
         });
 
@@ -322,7 +374,9 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
                 else {
                     textView.setText(tempText);
                 }
-                soundPool.play(keyboardOperation,1,1,0,0,1);
+                if(flagSound){
+                    soundPool.play(keyboardOperation,1,1,0,0,1);
+                }
                 ///////
             }
         });
@@ -335,7 +389,9 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
                 log("=");
                 operation = '0';
                 flagRepeatOperation = false;
-                soundPool.play(keyboardResult,1,1,0,0,1);
+                if(flagSound){
+                    soundPool.play(keyboardResult,1,1,0,0,1);
+                }
             }
         });
     }
@@ -371,7 +427,9 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
         number1 = Double.parseDouble(stringBuilder.toString());
         result = getResult(operation);
         log(s);
-        soundPool.play(keyboardTap,1,1,0,0,1);
+        if(flagSound){
+            soundPool.play(keyboardTap,1,1,0,0,1);
+        }
     }
 
     void log(String s){
@@ -398,7 +456,9 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
         stringBuilder.delete(0,stringBuilder.length());
         operation = s;
         textViewOperation.setText(String.valueOf(s));
-        soundPool.play(keyboardOperation,1,1,0,0,1);
+        if(flagSound){
+            soundPool.play(keyboardOperation,1,1,0,0,1);
+        }
     }
 
     void removeZeroAfterDot(){
