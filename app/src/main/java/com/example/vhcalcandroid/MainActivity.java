@@ -4,6 +4,7 @@ package com.example.vhcalcandroid;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.SoundPool;
+import android.util.Log;
 import android.view.HapticFeedbackConstants;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,6 +18,8 @@ import java.math.RoundingMode;
 
 public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadCompleteListener {
     //start the new multiply_addition branch
+    final String LOG_TAG = "myLogs";
+
     TextView textView;
     TextView textViewOperation;
     TextView textViewMemory;
@@ -126,6 +129,11 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
                 stringBuilder.append("0");
                 textView.setText(stringBuilder.toString());
                 number1 = Double.parseDouble(stringBuilder.toString());
+                Log.d(LOG_TAG, "button 0 -----------");
+                Log.d(LOG_TAG, "stringBuilder = " + stringBuilder.toString());
+                Log.d(LOG_TAG, "number_1 = " + number1);
+                Log.d(LOG_TAG, "number_2 = " + number2);
+                Log.d(LOG_TAG, "result = " + result);
                 soundPool.play(keyboardTap,1,1,0,0,1);
             }
         });
@@ -137,6 +145,11 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
                 stringBuilder.append("1");
                 textView.setText(stringBuilder.toString());
                 number1 = Double.parseDouble(stringBuilder.toString());
+                Log.d(LOG_TAG, "button 1 -----------");
+                Log.d(LOG_TAG, "stringBuilder = " + stringBuilder.toString());
+                Log.d(LOG_TAG, "number_1 = " + number1);
+                Log.d(LOG_TAG, "number_2 = " + number2);
+                Log.d(LOG_TAG, "result = " + result);
                 soundPool.play(keyboardTap,1,1,0,0,1);
             }
         });
@@ -148,6 +161,11 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
                 stringBuilder.append("2");
                 textView.setText(stringBuilder.toString());
                 number1 = Double.parseDouble(stringBuilder.toString());
+                Log.d(LOG_TAG, "button 2 -----------");
+                Log.d(LOG_TAG, "stringBuilder = " + stringBuilder.toString());
+                Log.d(LOG_TAG, "number_1 = " + number1);
+                Log.d(LOG_TAG, "number_2 = " + number2);
+                Log.d(LOG_TAG, "result = " + result);
                 soundPool.play(keyboardTap,1,1,0,0,1);
             }
         });
@@ -159,6 +177,11 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
                 stringBuilder.append("3");
                 textView.setText(stringBuilder.toString());
                 number1 = Double.parseDouble(stringBuilder.toString());
+                Log.d(LOG_TAG, "button 3 -----------");
+                Log.d(LOG_TAG, "stringBuilder = " + stringBuilder.toString());
+                Log.d(LOG_TAG, "number_1 = " + number1);
+                Log.d(LOG_TAG, "number_2 = " + number2);
+                Log.d(LOG_TAG, "result = " + result);
                 soundPool.play(keyboardTap,1,1,0,0,1);
             }
         });
@@ -170,6 +193,11 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
                 stringBuilder.append("4");
                 textView.setText(stringBuilder.toString());
                 number1 = Double.parseDouble(stringBuilder.toString());
+                Log.d(LOG_TAG, "button 4 -----------");
+                Log.d(LOG_TAG, "stringBuilder = " + stringBuilder.toString());
+                Log.d(LOG_TAG, "number_1 = " + number1);
+                Log.d(LOG_TAG, "number_2 = " + number2);
+                Log.d(LOG_TAG, "result = " + result);
                 soundPool.play(keyboardTap,1,1,0,0,1);
             }
         });
@@ -181,6 +209,11 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
                 stringBuilder.append("5");
                 textView.setText(stringBuilder.toString());
                 number1 = Double.parseDouble(stringBuilder.toString());
+                Log.d(LOG_TAG, "button 5 -----------");
+                Log.d(LOG_TAG, "stringBuilder = " + stringBuilder.toString());
+                Log.d(LOG_TAG, "number_1 = " + number1);
+                Log.d(LOG_TAG, "number_2 = " + number2);
+                Log.d(LOG_TAG, "result = " + result);
                 soundPool.play(keyboardTap,1,1,0,0,1);
             }
         });
@@ -192,6 +225,11 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
                 stringBuilder.append("6");
                 textView.setText(stringBuilder.toString());
                 number1 = Double.parseDouble(stringBuilder.toString());
+                Log.d(LOG_TAG, "button 6 -----------");
+                Log.d(LOG_TAG, "stringBuilder = " + stringBuilder.toString());
+                Log.d(LOG_TAG, "number_1 = " + number1);
+                Log.d(LOG_TAG, "number_2 = " + number2);
+                Log.d(LOG_TAG, "result = " + result);
                 soundPool.play(keyboardTap,1,1,0,0,1);
             }
         });
@@ -203,6 +241,11 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
                 stringBuilder.append("7");
                 textView.setText(stringBuilder.toString());
                 number1 = Double.parseDouble(stringBuilder.toString());
+                Log.d(LOG_TAG, "button 7 -----------");
+                Log.d(LOG_TAG, "stringBuilder = " + stringBuilder.toString());
+                Log.d(LOG_TAG, "number_1 = " + number1);
+                Log.d(LOG_TAG, "number_2 = " + number2);
+                Log.d(LOG_TAG, "result = " + result);
                 soundPool.play(keyboardTap,1,1,0,0,1);
             }
         });
@@ -214,6 +257,11 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
                 stringBuilder.append("8");
                 textView.setText(stringBuilder.toString());
                 number1 = Double.parseDouble(stringBuilder.toString());
+                Log.d(LOG_TAG, "button 8 -----------");
+                Log.d(LOG_TAG, "stringBuilder = " + stringBuilder.toString());
+                Log.d(LOG_TAG, "number_1 = " + number1);
+                Log.d(LOG_TAG, "number_2 = " + number2);
+                Log.d(LOG_TAG, "result = " + result);
                 soundPool.play(keyboardTap,1,1,0,0,1);
             }
         });
@@ -225,6 +273,11 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
                 stringBuilder.append("9");
                 textView.setText(stringBuilder.toString());
                 number1 = Double.parseDouble(stringBuilder.toString());
+                Log.d(LOG_TAG, "button 9 -----------");
+                Log.d(LOG_TAG, "stringBuilder = " + stringBuilder.toString());
+                Log.d(LOG_TAG, "number_1 = " + number1);
+                Log.d(LOG_TAG, "number_2 = " + number2);
+                Log.d(LOG_TAG, "result = " + result);
                 soundPool.play(keyboardTap,1,1,0,0,1);
             }
         });
@@ -288,6 +341,12 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
                 //textView.setText("+");
                 operation = '+';
                 textViewOperation.setText("+");
+                Log.d(LOG_TAG, "button + -----------");
+                Log.d(LOG_TAG, "stringBuilder = " + stringBuilder.toString());
+                Log.d(LOG_TAG, "number_1 = " + number1);
+                Log.d(LOG_TAG, "number_2 = " + number2);
+                Log.d(LOG_TAG, "operation = " + operation);
+                Log.d(LOG_TAG, "result = " + result);
                 soundPool.play(keyboardOperation,1,1,0,0,1);
             }
         });
@@ -301,6 +360,12 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
                 number2 = number1;
                 operation = '-';
                 textViewOperation.setText("-");
+                Log.d(LOG_TAG, "button - -----------");
+                Log.d(LOG_TAG, "stringBuilder = " + stringBuilder.toString());
+                Log.d(LOG_TAG, "number_1 = " + number1);
+                Log.d(LOG_TAG, "number_2 = " + number2);
+                Log.d(LOG_TAG, "operation = " + operation);
+                Log.d(LOG_TAG, "result = " + result);
                 soundPool.play(keyboardOperation,1,1,0,0,1);
             }
         });
@@ -314,6 +379,12 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
                 number2 = number1;
                 operation = '*';
                 textViewOperation.setText("*");
+                Log.d(LOG_TAG, "button * -----------");
+                Log.d(LOG_TAG, "stringBuilder = " + stringBuilder.toString());
+                Log.d(LOG_TAG, "number_1 = " + number1);
+                Log.d(LOG_TAG, "number_2 = " + number2);
+                Log.d(LOG_TAG, "operation = " + operation);
+                Log.d(LOG_TAG, "result = " + result);
                 soundPool.play(keyboardOperation,1,1,0,0,1);
             }
         });
@@ -327,6 +398,12 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
                 number2 = number1;
                 operation = '/';
                 textViewOperation.setText("/");
+                Log.d(LOG_TAG, "button / -----------");
+                Log.d(LOG_TAG, "stringBuilder = " + stringBuilder.toString());
+                Log.d(LOG_TAG, "number_1 = " + number1);
+                Log.d(LOG_TAG, "number_2 = " + number2);
+                Log.d(LOG_TAG, "operation = " + operation);
+                Log.d(LOG_TAG, "result = " + result);
                 soundPool.play(keyboardOperation,1,1,0,0,1);
             }
         });
@@ -388,6 +465,12 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
                         }
                 }
 
+                Log.d(LOG_TAG, "button = -----------");
+                Log.d(LOG_TAG, "stringBuilder = " + stringBuilder.toString());
+                Log.d(LOG_TAG, "number_1 = " + number1);
+                Log.d(LOG_TAG, "number_2 = " + number2);
+                Log.d(LOG_TAG, "operation = " + operation);
+                Log.d(LOG_TAG, "result = " + result);
                 //if result include zero after dot,this fix it
                 String tempText = String.valueOf(result);
                 String resultText = "";
