@@ -15,4 +15,11 @@
             app:showAsAction="always">
     </item>
 
+    <item
+            android:id="@+id/style"
+            android:icon="@drawable/icon_calc_a"
+            android:title="style"
+            app:showAsAction="always">
+    </item>
+
 </menu>
