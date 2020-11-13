@@ -31,7 +31,8 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
 
     static int layoutMain = R.layout.activity_main;
     static int layoutMain2 = R.layout.activity_main_2;
-    static int layoutMain3 = R.layout.activity_main_3;
+    //static int layoutMain3 = R.layout.activity_main_3;
+    static int layoutMain3 = R.layout.table_layout;
 
     static int[] layouts = {layoutMain, layoutMain2, layoutMain3};
     static int currentLayout = layouts[count];
