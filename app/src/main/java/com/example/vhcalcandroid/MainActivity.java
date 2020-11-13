@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -20,8 +19,8 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadCompleteListener {
-    // fixed del logic
     // MR logic need to fix
+    //added black theme
 
     final String LOG_TAG = "myLogs";
 
@@ -29,19 +28,19 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
 
     static int count = 0;
 
-    static int layoutMain = R.layout.activity_main;
-    static int layoutMain2 = R.layout.activity_main_2;
+    static int layoutMain = R.layout.blue_theme;
+    static int layoutMain2 = R.layout.wood_theme;
     //static int layoutMain3 = R.layout.activity_main_3;
-    static int layoutMain3 = R.layout.table_layout;
+    static int layoutMain3 = R.layout.black_theme;
 
-    static int[] layouts = {layoutMain, layoutMain2, layoutMain3};
+    static int[] layouts = {layoutMain3, layoutMain2, layoutMain};
     static int currentLayout = layouts[count];
 
     static int theme = R.style.AppTheme;
     static int themeWood = R.style.AppThemeWood;
     static int themePaint = R.style.AppThemePaint;
 
-    static int[] themes = {theme, themeWood, themePaint};
+    static int[] themes = {themePaint, themeWood, theme};
     static int currentTheme = themes[count];
 
     ConstraintLayout constraintLayout;
