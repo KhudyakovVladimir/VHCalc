@@ -18,7 +18,8 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadCompleteListener {
-    // start style_and_sound branch
+    // fixed del logic
+    // MR logic need to fix
 
     final String LOG_TAG = "myLogs";
 
@@ -277,19 +278,25 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             public void onClick(View v) {
                 buttonDel.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
                 int i = stringBuilder.length();
-                if(stringBuilder.length() > 0)
+                if(stringBuilder.length() > 0){
                     stringBuilder.deleteCharAt(stringBuilder.length()-1);
-                textView.setText(stringBuilder.toString());
+                    textView.setText(stringBuilder.toString());
+                    result = Double.parseDouble(stringBuilder.toString());
+                }
                 if(stringBuilder.length() == 0){
                     textView.setText(stringBuilder.toString());
+                    result = Double.parseDouble(stringBuilder.toString());
                 }
                 else {
                     number1 = Double.parseDouble(stringBuilder.toString());
                     textView.setText(stringBuilder.toString());
+                    result = Double.parseDouble(stringBuilder.toString());
                 }
                 if(flagSound){
                     soundPool.play(keyboardOperation,1,1,0,0,1);
                 }
+
+                log("del");
             }
         });
 
@@ -300,6 +307,11 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
                 stringBuilder.delete(0,stringBuilder.capacity());
                 textView.setText("0");
                 textViewOperation.setText("");
+                result = 0.0;
+                number1 = 0.0;
+                number2 = 0.0;
+                operation = '0';
+                log("C");
                 if(flagSound){
                     soundPool.play(keyboardOperation,1,1,0,0,1);
                 }
@@ -348,7 +360,9 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
                 M.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
                 String s = (String) textView.getText();
                 memory = Double.parseDouble(s);
+                workInsideOperation(' ');
                 textViewMemory.setText("M");
+                log("M");
                 if(flagSound){
                     soundPool.play(keyboardOperation,1,1,0,0,1);
                 }
@@ -359,10 +373,13 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             @Override
             public void onClick(View v) {
                 MR.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
-                number1 = memory;
+                //number1 = memory;
+                //number2 = memory;
+                result = memory;
                 BigDecimal bigDecimal = new BigDecimal(String.valueOf(memory));
                 //textView.setText(String.valueOf(bigDecimal));
 
+                log("MR");
                 ///////
                 String tempText = String.valueOf(memory);
                 String resultText = "";
@@ -378,6 +395,7 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
                     soundPool.play(keyboardOperation,1,1,0,0,1);
                 }
                 ///////
+                memory = 0.0;
             }
         });
 
@@ -437,6 +455,7 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
         Log.d(LOG_TAG, "stringBuilder = " + stringBuilder.toString());
         Log.d(LOG_TAG, "number_1 = " + number1);
         Log.d(LOG_TAG, "number_2 = " + number2);
+        Log.d(LOG_TAG,"memory = " + memory);
         Log.d(LOG_TAG, "result = " + result);
         Log.d(LOG_TAG, "operation = " + operation);
         Log.d(LOG_TAG, "flagRepeatOperation = " + flagRepeatOperation);
