@@ -20,7 +20,6 @@ import java.math.RoundingMode;
 
 public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadCompleteListener {
     // MR logic need to fix
-    //added black theme
 
     final String LOG_TAG = "myLogs";
 
@@ -28,20 +27,20 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
 
     static int count = 0;
 
-    static int layoutMain = R.layout.blue_theme;
-    static int layoutMain2 = R.layout.wood_theme;
+    int layoutMain = R.layout.blue_theme;
+    int layoutMain2 = R.layout.wood_theme;
     //static int layoutMain3 = R.layout.activity_main_3;
-    static int layoutMain3 = R.layout.black_theme;
+    int layoutMain3 = R.layout.black_theme;
 
-    static int[] layouts = {layoutMain3, layoutMain2, layoutMain};
-    static int currentLayout = layouts[count];
+    int[] layouts = {layoutMain3, layoutMain2, layoutMain};
+    int currentLayout = layouts[count];
 
-    static int theme = R.style.AppTheme;
-    static int themeWood = R.style.AppThemeWood;
-    static int themePaint = R.style.AppThemePaint;
+    int theme = R.style.AppTheme;
+    int themeWood = R.style.AppThemeWood;
+    int themePaint = R.style.AppThemePaint;
 
-    static int[] themes = {themePaint, themeWood, theme};
-    static int currentTheme = themes[count];
+    int[] themes = {themePaint, themeWood, theme};
+    int currentTheme = themes[count];
 
     ConstraintLayout constraintLayout;
     TextView textView;
@@ -79,10 +78,29 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
     boolean flagRepeatOperation = false;
     boolean flagSound = true;
 
+    //sounds////////////////
     SoundPool soundPool;
+
     int keyboardTap;
     int keyboardOperation;
     int keyboardResult;
+
+    int woodTap = R.raw.keyboard_tap;
+    int woodOperation = R.raw.keyboard_operation;
+    int woodResult = R.raw.keyboard_result;
+
+    int blackTap = R.raw.keyboard_black_tap;
+    int blackOperation = R.raw.keyboard_black_operation;
+    int blackResult = R.raw.keyboard_black_result;
+
+    int blueTap = R.raw.keyboard_black_tap;
+    int blueOperation = R.raw.keyboard_black_operation;
+    int blueResult = R.raw.keyboard_black_result;
+
+    int[] taps = {blackTap, woodTap, blueTap};
+    int[] operations = {blackOperation, woodOperation, blueOperation};
+    int[] results = {blackResult, woodResult, blueResult};
+    //sounds////////////////
 
     static StringBuilder stringBuilder = new StringBuilder();
 
@@ -113,11 +131,6 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
                 break;
             }
         }
-
-        //MenuItem menuItemAbout = menu.add("about");
-        //MenuItem menuItemSound = menu.add("sound");
-        //menuItemAbout.setIntent(new Intent(this, About.class));
-        //return super.onCreateOptionsMenu(menu);
         return true;
     }
 
@@ -158,14 +171,14 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(currentTheme);
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_main);
         setContentView(currentLayout);
 
         soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
         soundPool.setOnLoadCompleteListener(this);
-        keyboardTap = soundPool.load(this, R.raw.keyboard_tap, 1);
-        keyboardOperation = soundPool.load(this,R.raw.keyboard_operation,1);
-        keyboardResult = soundPool.load(this, R.raw.keyboard_result, 1);
+
+        keyboardTap = soundPool.load(this, taps[count], 1);
+        keyboardOperation = soundPool.load(this, operations[count],1);
+        keyboardResult = soundPool.load(this, results[count], 1);
 
         constraintLayout = findViewById(R.id.constraintLayout);
 
@@ -409,12 +422,11 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
                 //number1 = memory;
                 //number2 = memory;
                 result = memory;
-                BigDecimal bigDecimal = new BigDecimal(String.valueOf(memory));
-                //textView.setText(String.valueOf(bigDecimal));
 
-                log("MR");
+                BigDecimal bigDecimal = new BigDecimal(String.valueOf(memory));
+
                 ///////
-                String tempText = String.valueOf(memory);
+                String tempText = String.valueOf(bigDecimal);
                 String resultText = "";
                 if((tempText.charAt(tempText.length()-1) == '0')){
                     resultText = tempText.substring(0,tempText.length() - 2);
@@ -424,11 +436,14 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
                 else {
                     textView.setText(tempText);
                 }
+                ///////
                 if(flagSound){
                     soundPool.play(keyboardOperation,1,1,0,0,1);
                 }
-                ///////
+
+                log("MR");
                 memory = 0.0;
+
             }
         });
 
@@ -437,12 +452,13 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             public void onClick(View v) {
                 buttonResult.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
                 removeZeroAfterDot();
-                log("=");
+
                 operation = '0';
                 flagRepeatOperation = false;
                 if(flagSound){
                     soundPool.play(keyboardResult,1,1,0,0,1);
                 }
+                log("=");
             }
         });
     }
@@ -477,10 +493,10 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
         textView.setText(stringBuilder.toString());
         number1 = Double.parseDouble(stringBuilder.toString());
         result = getResult(operation);
-        log(s);
         if(flagSound){
             soundPool.play(keyboardTap,1,1,0,0,1);
         }
+        log(s);
     }
 
     void log(String s){
