@@ -25,7 +25,8 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
 
     static int codeForMenu = 0;
 
-    static int count = 0;
+    static int countOfThemes = 0;
+    static int countOfOperations = 0;
 
     int layoutMain = R.layout.blue_theme;
     int layoutMain2 = R.layout.wood_theme;
@@ -33,14 +34,14 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
     int layoutMain3 = R.layout.black_theme;
 
     int[] layouts = {layoutMain3, layoutMain2, layoutMain};
-    int currentLayout = layouts[count];
+    int currentLayout = layouts[countOfThemes];
 
     int theme = R.style.AppTheme;
     int themeWood = R.style.AppThemeWood;
     int themePaint = R.style.AppThemePaint;
 
     int[] themes = {themePaint, themeWood, theme};
-    int currentTheme = themes[count];
+    int currentTheme = themes[countOfThemes];
 
     ConstraintLayout constraintLayout;
     TextView textView;
@@ -155,12 +156,12 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
                 break;
             }
             case R.id.style : {
-                count++;
-                if(count > layouts.length - 1){
-                    count = 0;
+                countOfThemes++;
+                if(countOfThemes > layouts.length - 1){
+                    countOfThemes = 0;
                 }
-                currentLayout = layouts[count];
-                currentTheme = themes[count];
+                currentLayout = layouts[countOfThemes];
+                currentTheme = themes[countOfThemes];
                 recreate();
                 break;
             }
@@ -177,9 +178,9 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
         soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
         soundPool.setOnLoadCompleteListener(this);
 
-        keyboardTap = soundPool.load(this, taps[count], 1);
-        keyboardOperation = soundPool.load(this, operations[count],1);
-        keyboardResult = soundPool.load(this, results[count], 1);
+        keyboardTap = soundPool.load(this, taps[countOfThemes], 1);
+        keyboardOperation = soundPool.load(this, operations[countOfThemes],1);
+        keyboardResult = soundPool.load(this, results[countOfThemes], 1);
 
         constraintLayout = findViewById(R.id.constraintLayout);
 
@@ -210,8 +211,6 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
         buttonResult = findViewById(R.id.buttonResult);
 
         textView.setText("0");
-
-        flagRepeatOperation = true;
 
         button0.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -353,6 +352,7 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
                 number1 = 0.0;
                 number2 = 0.0;
                 operation = '0';
+                countOfOperations = 0;
                 log("C");
                 if(flagSound){
                     soundPool.play(keyboardOperation,1,1,0,0,1);
@@ -450,6 +450,7 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
                 removeZeroAfterDot();
                 textViewShowOperations.setText("");
                 operation = '0';
+                countOfOperations = 0;
                 flagRepeatOperation = false;
                 if(flagSound){
                     soundPool.play(keyboardResult,1,1,0,0,1);
@@ -507,20 +508,17 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
     }
 
     void workInsideOperation(char s){
-        flagRepeatOperation = true;
-
-        if(flagRepeatOperation){
-            number2 = result;
-        }
-        else {
-            flagRepeatOperation = false;
-            number2 = number1;
-        }
+        //flagRepeatOperation = true;
+        countOfOperations++;
+        number2 = result;
 
         stringBuilder.delete(0,stringBuilder.length());
         operation = s;
         textViewOperation.setText(String.valueOf(s));
-        showResult();
+        //showResult();
+        if(countOfOperations > 1){
+            showResult();
+        }
         if(flagSound){
             soundPool.play(keyboardOperation,1,1,0,0,1);
         }
