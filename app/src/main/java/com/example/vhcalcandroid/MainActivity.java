@@ -323,20 +323,18 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             @Override
             public void onClick(View v) {
                 buttonDel.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
-                int i = stringBuilder.length();
-
-                if(stringBuilder.length() > 1){
+                if(stringBuilder.length() > 0){
                     stringBuilder.deleteCharAt(stringBuilder.length()-1);
                     textView.setText(stringBuilder.toString());
-                    result = Double.parseDouble(stringBuilder.toString());
+                    if(!stringBuilder.toString().equals("")) {
+                        result = Double.parseDouble(stringBuilder.toString());
+                    }
                 }
-
                 textView.setText(stringBuilder.toString());
-                result = Double.parseDouble(stringBuilder.toString());
+                //result = Double.parseDouble(stringBuilder.toString());
                 if(flagSound){
                     soundPool.play(keyboardOperation,1,1,0,0,1);
                 }
-
                 log("del");
             }
         });
