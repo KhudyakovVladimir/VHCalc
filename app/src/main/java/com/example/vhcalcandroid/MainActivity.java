@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
     TextView textView;
     TextView textViewOperation;
     TextView textViewMemory;
+    TextView textViewShowOperations;
 
     Button button0;
     Button button1;
@@ -185,6 +186,7 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
         textView = findViewById(R.id.textView);
         textViewOperation = findViewById(R.id.textViewOperation);
         textViewMemory = findViewById(R.id.textViewMemory);
+        textViewShowOperations = findViewById(R.id.textViewShowOperations);
 
         button0 = findViewById(R.id.button0);
         button1 = findViewById(R.id.button1);
@@ -346,6 +348,7 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
                 stringBuilder.delete(0,stringBuilder.capacity());
                 textView.setText("0");
                 textViewOperation.setText("");
+                textViewShowOperations.setText("");
                 result = 0.0;
                 number1 = 0.0;
                 number2 = 0.0;
@@ -445,7 +448,7 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             public void onClick(View v) {
                 buttonResult.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
                 removeZeroAfterDot();
-
+                textViewShowOperations.setText("");
                 operation = '0';
                 flagRepeatOperation = false;
                 if(flagSound){
@@ -517,6 +520,7 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
         stringBuilder.delete(0,stringBuilder.length());
         operation = s;
         textViewOperation.setText(String.valueOf(s));
+        showResult();
         if(flagSound){
             soundPool.play(keyboardOperation,1,1,0,0,1);
         }
@@ -533,6 +537,20 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
         }
         else {
             textView.setText(tempText);
+        }
+    }
+
+    void showResult(){
+        double tmp = result;
+        String tempText = String.valueOf(tmp);
+        String resultText = "";
+        if((tempText.charAt(tempText.length()-1) == '0')){
+            resultText = tempText.substring(0,tempText.length() - 2);
+            textViewShowOperations.setText(resultText);
+            //textViewOperation.setText("");
+        }
+        else {
+            textViewShowOperations.setText(tempText);
         }
     }
 

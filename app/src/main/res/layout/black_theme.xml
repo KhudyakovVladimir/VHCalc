@@ -4,20 +4,37 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" android:background="#090909">
-    <TextView
-            android:layout_marginStart="10dp"
-            android:layout_width="38dp"
-            android:layout_height="25dp"
-            android:id="@+id/textViewOperation"
-            android:textSize="20sp"
-            android:textColor="#3178A8"/>
-    <TextView
-            android:layout_marginStart="10dp"
-            android:layout_width="37dp"
-            android:layout_height="25dp"
-            android:id="@+id/textViewMemory"
-            android:textSize="20sp"
-            android:textColor="#FFFFFFFF"/>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="54dp">
+        <TextView
+                android:layout_marginStart="10dp"
+                android:layout_width="38dp"
+                android:layout_height="25dp"
+                android:id="@+id/textViewOperation"
+                android:textSize="20sp"
+                android:textColor="#3178A8"/>
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <TextView
+                    android:layout_marginStart="10dp"
+                    android:layout_width="40dp"
+                    android:layout_height="25dp"
+                    android:id="@+id/textViewMemory"
+                    android:textSize="20sp"
+                    android:textColor="#FFFFFFFF"/>
+            <TextView
+                    android:layout_width="332dp"
+                    android:layout_height="25dp"
+                    android:textSize="20sp"
+                    android:textColor="#3178A8"
+                    android:id="@+id/textViewShowOperations"/>
+        </LinearLayout>
+    </LinearLayout>
     <TextView
             android:id="@+id/textView"
             android:maxLines="1"
