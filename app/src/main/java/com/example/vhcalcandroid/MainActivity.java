@@ -470,10 +470,16 @@ public class MainActivity extends AppCompatActivity implements SoundPool.OnLoadC
             case '0': {result = Double.parseDouble(bigDecimal1.toString());break;}
             case '+' : result = Double.parseDouble(bigDecimal2.add(bigDecimal1).toString());break;
             case '-': result = Double.parseDouble(String.valueOf(bigDecimal2.subtract(bigDecimal1)));break;
-            case '*': result = Double.parseDouble(bigDecimal2.multiply(bigDecimal1).toString());break;
+            case '*':
+                double res = Double.parseDouble(bigDecimal2.multiply(bigDecimal1).toString());
+                BigDecimal bigDecimal3 = new BigDecimal(String.valueOf(res));
+                BigDecimal bigDecimal4 = bigDecimal3.setScale(5, RoundingMode.HALF_DOWN);
+                result = Double.parseDouble(bigDecimal4.toString());
+                //result = Double.parseDouble(bigDecimal2.multiply(bigDecimal1).toString());
+                ;break;
             case '/':
                 try {
-                    result = Double.parseDouble(bigDecimal2.divide(bigDecimal1,7, RoundingMode.HALF_UP).toString());break;
+                    result = Double.parseDouble(bigDecimal2.divide(bigDecimal1,7, RoundingMode.UP).toString());break;
                 }catch (ArithmeticException aE){
                     textView.setText("error");
                     stringBuilder.delete(0,stringBuilder.length());
